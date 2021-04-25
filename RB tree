@@ -40,7 +40,8 @@ if(ptr -> data == data)
 printf("\nSorry , duplicates not allowed...\n");
 return root;
 }
-index = (data - ptr -> data) > 0 ? 1 : 0;stack[ht] = ptr;
+index = (data - ptr -> data) > 0 ? 1 : 0;
+stack[ht] = ptr;
 ptr = ptr -> link[index];
 dir[ht++] = index;
 }
@@ -89,7 +90,8 @@ break;
 else
 {
 yPtr = stack[ht - 2] -> link[0];
-if((yPtr != NULL) && (yPtr -> color == RED)){
+if((yPtr != NULL) && (yPtr -> color == RED))
+{
 stack[ht - 2] -> color = RED;
 stack[ht - 1] -> color = yPtr -> color = BLACK;
 ht = ht - 2;
@@ -136,7 +138,8 @@ scanf("%d", &num );
 printf("\n Enter elements:");
 for( i = 0; i < num; i++)
 {
-scanf("%d", &ele);root = Insert( root, ele);
+scanf("%d", &ele);
+root = Insert( root, ele);
 }
 return root;
 }
@@ -180,7 +183,8 @@ stack[ht - 1] -> link[dir[ht - 1]] = ptr -> link[0];
 }
 else
 {
-xPtr = ptr -> link[1];if(xPtr -> link[0] == NULL)
+xPtr = ptr -> link[1];
+if(xPtr -> link[0] == NULL)
 {
 xPtr -> link[0] = ptr -> link[0];
 color = xPtr -> color;
@@ -223,7 +227,8 @@ root = yPtr;
 color = yPtr -> color;
 yPtr -> color = ptr -> color;
 ptr -> color = color;
-}}
+}
+}
 if(ht < 1)
 return root;
 if(ptr -> color == BLACK)
@@ -264,27 +269,21 @@ ht++;
 rPtr = stack[ht - 1] -> link[1];
 }
 if((!rPtr -> link[0] || rPtr -> link[0] -> color == BLACK) &&
-(!rPtr -> link[1] || rPtr -> link[1] -> color == BLACK)){
+(!rPtr -> link[1] || rPtr -> link[1] -> color == BLACK))
+{
 rPtr -> color = RED;
 }
 else
 {
-if(!rPtr
+if(!rPtr -> link[1] || rPtr -> link[1] -> color == BLACK)
 {
-qPtr
-rPtr
-qPtr
-rPtr
-qPtr
-rPtr
+qPtr = rPtr -> link[0];
+rPtr -> color = RED;
+qPtr -> color = BLACK;
+rPtr -> link[0] = qPtr -> link[1];
+qPtr -> link[1] = rPtr;
+rPtr = stack[ht - 1] -> link[1] = qPtr;
 }
--> link[1] || rPtr -> link[1] -> color == BLACK)
-= rPtr -> link[0];
--> color = RED;
--> color = BLACK;
--> link[0] = qPtr -> link[1];
--> link[1] = rPtr;
-= stack[ht - 1] -> link[1] = qPtr;
 rPtr -> color = stack[ht - 1] -> color;
 stack[ht - 1] -> color = BLACK;
 rPtr -> link[1] -> color = BLACK;
@@ -317,7 +316,8 @@ if(stack[ht - 1] == root)
 root = rPtr;
 }
 else
-{stack[ht - 2] -> link[dir[ht - 2]] = rPtr;
+{
+stack[ht - 2] -> link[dir[ht - 2]] = rPtr;
 }
 dir[ht] = 1;
 stack[ht] = stack[ht - 1];
@@ -361,19 +361,16 @@ ht--;
 }
 }
 return root;
-}void Inorder(rbNode
+}
+void Inorder(rbNode *root)
 {
 if (root != NULL)
 {
-Inorder( root
-printf("%d ->
-Inorder( root
+Inorder( root -> link[0]);
+printf("%d -> ", root -> data );
+Inorder( root -> link[1] );
 }
 }
-*root)
--> link[0]);
-", root -> data );
--> link[1] );
 int main()
 {
 rbNode *root = NULL;
@@ -382,8 +379,7 @@ int e = 1, ch;
 while( e )
 {
 printf( "\n--------------MENU--------------\n" );
-printf( "\n\t1. Create\n\t2. Insert\n\t3. Inorder Traversal\n\t4.
-Delete\n\t5. Exit\n" );
+printf( "\n\t1. Create\n\t2. Insert\n\t3. Inorder Traversal\n\t4. Delete\n\t5. Exit\n" );
 printf( "\n--------------------------------\n" );
 printf( "\n Enter your choice:" );
 scanf( "%d", &ch );
